@@ -1,0 +1,34 @@
+---
+title: "Using centered_barplot() to Visualize Nominal Distributions"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Using centered_barplot() to Visualize Nominal Distributions}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(nomiShape)
+```
+
+## Centered Bar Plot Example
+
+The below example demonstrates how to use the `centered_barplot()` function from the `nomiShape` package to create a centered bar plot for a nominal variable "manufacturer" in the `mpg` dataset. Centered bar plots help visualize the distribution of categories by placing the most frequent categories at the center.
+
+```{r}
+centered_barplot(mpg, "manufacturer")
+```
+
+Another example using the `starwars` dataset to visualize the distribution of the "species" variable, scaled to percentages.
+
+```{r}
+centered_barplot(starwars, "species", scale = "percent")
+```
+
