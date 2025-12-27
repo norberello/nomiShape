@@ -52,6 +52,16 @@ Ranked bar plots order categories from the most frequent to the least frequent, 
 ranked_barplot(categories, "animal")
 ```
 
+```{r ranked-barplot-example}
+# Example usage of ranked_barplot
+ranked_barplot(categories2, "animal")
+```
+
+```{r ranked-barplot-example}
+# Example usage of ranked_barplot
+ranked_barplot(categories3, "animal")
+```
+
 ### Ranked Dot Plots
 
 Ranked dot plots display categories as points ordered from the most frequent to the least frequent, allowing for easy comparison of category frequencies.
@@ -61,13 +71,23 @@ Ranked dot plots display categories as points ordered from the most frequent to 
 ranked_dotplot(categories, "animal", connect = TRUE)
 ```
 
+```{r ranked-dotplot-example}
+# Example usage of ranked_dotplot
+ranked_dotplot(categories2, "animal", connect = TRUE, shade = TRUE)
+```
+
+```{r ranked-dotplot-example}
+# Example usage of ranked_dotplot
+ranked_dotplot(categories3, "animal", connect = FALSE, shade = TRUE)
+```
+
 ### Pareto Charts
 
 Pareto charts combine bar plots and line graphs to highlight the most significant categories in a nominal variable. They help identify the "vital few" categories that contribute most to the overall distribution.
 
 ```{r pareto-chart-example}
 # Example usage of pareto
-pareto(categories, "animal")
+pareto(categories3, "animal")
 ```
 
 ### Centered Bar Plots
@@ -79,6 +99,16 @@ Centered bar plots arrange categories symmetrically around the center, with the 
 centered_barplot(categories, "animal")
 ```
 
+```{r centered-barplot-example}
+# Example usage of centered_barplot
+centered_barplot(categories2, "animal",scale = "percent")
+```
+
+```{r centered-barplot-example}
+# Example usage of centered_barplot
+centered_barplot(categories3, "animal")
+```
+
 ### Centered Dot Plots
 
 Centered dot plots display categories as points arranged symmetrically around the center, with the most frequent categories in the middle. Optionally, points can be connected with lines to highlight trends.
@@ -87,5 +117,17 @@ Centered dot plots display categories as points arranged symmetrically around th
 # Example usage of centered_dotplot
 centered_dotplot(categories, "animal",connect = TRUE,shade = TRUE)
 ```
+
+
+```{r centered-dotplot-example}
+# Example usage of centered_dotplot
+centered_dotplot(categories2, "animal",connect = TRUE,shade = TRUE)
+```
+
+```{r centered-dotplot-example}
+# Example usage of centered_dotplot
+centered_dotplot(categories3, "animal",connect = TRUE,shade = TRUE)
+```
+
 
 
