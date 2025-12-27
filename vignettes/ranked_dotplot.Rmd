@@ -1,0 +1,43 @@
+---
+title: "Ranked Dot Plots for Nominal Variables"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Ranked Dot Plots for Nominal Variables}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(nomiShape)
+```
+
+## Ranked Dot Plots
+The `ranked_dotplot()` function creates a dot plot for a nominal variable, ordering categories from the most frequent to the least frequent.
+
+```{r ranked-dotplot-example}
+# Example usage of ranked_dotplot
+ranked_dotplot(categories, "animal")
+```
+
+```{r ranked-dotplot-connect}
+# Example with connecting line
+ranked_dotplot(categories, "animal", connect = TRUE)
+```
+
+```{r ranked-dotplot-percent}
+# Example with percent scale
+ranked_dotplot(mpg, "manufacturer", scale = "percent")
+```
+
+```{r}
+ranked_dotplot(mpg, "manufacturer", connect = TRUE, shade = TRUE, scale = "percent")
+```
+
+

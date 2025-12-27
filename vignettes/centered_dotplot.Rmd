@@ -1,0 +1,33 @@
+---
+title: "Centered Dot Plots for Nominal Variables"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Centered Dot Plots for Nominal Variables}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(nomiShape)
+```
+
+
+## Centered Dot Plots
+The `centered_dotplot()` function creates a centered dot plot for a nominal variable, ordering categories from the most frequent at the center toward less frequent categories on both sides. Optionally, it can connect points with a line.
+
+```{r centered-dotplot-example}
+# Example usage of centered_dotplot
+centered_dotplot(mpg, "manufacturer")
+```
+
+```{r centered-dotplot-connect}
+# Example with connecting line
+centered_dotplot(mpg, "manufacturer", connect = TRUE)
+```

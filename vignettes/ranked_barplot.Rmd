@@ -1,0 +1,29 @@
+---
+title: "Ranked Bar Plots for Nominal Variables"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Ranked Bar Plots for Nominal Variables}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(nomiShape)
+```
+
+## Ranked Bar Plots
+The `ranked_barplot()` function creates a bar plot for a nominal variable, ordering categories from the most frequent to the least frequent.
+
+```{r ranked-barplot-example}
+# Example usage of ranked_barplot
+ranked_barplot(categories, "animal")
+```
+
+

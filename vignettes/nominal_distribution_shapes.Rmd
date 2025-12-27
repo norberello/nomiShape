@@ -1,0 +1,91 @@
+---
+title: "Visualizing and Analyzing Distributions of Nominal Variables"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Visualizing and Analyzing Distributions of Nominal Variables}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Visualizing Nominal Distributions with nomiShape
+
+Data can be measured on different scales, which fundamentally affects how we analyze and visualize it (Table 1). There are four commonly recognized measurement scales: nominal, ordinal, interval, and ratio. Variables measured on a continuous scale can take any value within a range and typically follow continuous distributions. Variables with a finite set of possible values follow discrete distributions. Among discrete and qualitative variables, nominal variables are unique in that they categorize data into labels or groups without any inherent order or hierarchy. Nominal categories simply indicate membership: an observation either belongs to a category or it does not. No comparative or numerical information is implied. Common examples of nominal variables include: Blood group, Gender, Religion or Color
+
+Table 1. Summary of Nominal Data Characteristics and Visualization Tools of the library `nomiShape`
+
+| Concept | Description |
+|---------|-------------|
+| Variable Type | Nominal (categorical, unordered) |
+| Characteristics | Discrete values, no intrinsic order, qualitative labels only |
+| Examples | Gender, Blood group, Religion, Color |
+| Common Visualizations | Bar plots (unordered or frequency-sorted) |
+| Distribution Concepts | Symmetry, dominance, tails — rarely considered in nominal data |
+| Challenges | Cannot compute means, medians, or numeric statistics directly |
+| Tools in `nomiShape` | Centered Bar Plot, Centered Dot Plot, Ranked Bar Plot, Ranked Dot Plot, Pareto Chart |
+
+This table provides a quick reference for **what nominal data is**, its properties, and the **visualization tools** offered by `nomiShape`.
+
+Handling nominal (categorical) data is an essential part of data analysis. Almost every data science project involves working with such variables, and students and practitioners alike should know how to store, summarize, visualize, and manipulate them. Traditional visualizations of nominal variables often use unordered bar plots or frequency-sorted bar plots (from high to low), which emphasize category counts but rarely provide insight into distributional structure. As a result, concepts like symmetry, skewness, dominance, or tail behaviour—commonly discussed for numerical variables—are seldom considered for nominal data. However, exceptions include Pareto charts and other ranked visualizations, which can highlight the "vital few" categories following the 80:20 rule or reveal long-tailed distributions, such as rank-abundance plots in ecology where typically most species are relatively rare and a few are common. These visualizations allow insights into categorical dominance and rarity patterns even for nominal variables.
+
+The `nomiShape` package is designed to further explore the shape of nominal distributions. It offers multiple plotting functions, including classic visualizations such as Pareto charts and ranked bar plots, as well as novel centered bar and dot plots. These functions help users understand frequency structures, dominance patterns, and distributional characteristics of nominal variables, facilitating more nuanced analysis of categorical data.
+
+```{r setup}
+library(nomiShape)
+```
+
+## Visualizing and Analyzing Distributions of Nominal Variables
+This vignette demonstrates how to visualize and analyze the distributions of nominal variables using various plotting functions provided by the `nomiShape` package. We will explore centered bar plots, ranked bar plots, centered dot plots, and ranked dot plots.
+
+### Ranked Bar Plots
+
+Ranked bar plots order categories from the most frequent to the least frequent, providing a clear view of category dominance and distribution.
+
+```{r ranked-barplot-example}
+# Example usage of ranked_barplot
+ranked_barplot(categories, "animal")
+```
+
+### Ranked Dot Plots
+
+Ranked dot plots display categories as points ordered from the most frequent to the least frequent, allowing for easy comparison of category frequencies.
+
+```{r ranked-dotplot-example}
+# Example usage of ranked_dotplot
+ranked_dotplot(categories, "animal", connect = TRUE)
+```
+
+### Pareto Charts
+
+Pareto charts combine bar plots and line graphs to highlight the most significant categories in a nominal variable. They help identify the "vital few" categories that contribute most to the overall distribution.
+
+```{r pareto-chart-example}
+# Example usage of pareto
+pareto(categories, "animal")
+```
+
+### Centered Bar Plots
+
+Centered bar plots arrange categories symmetrically around the center, with the most frequent categories in the middle and less frequent ones towards the edges. This layout helps to visualize the distribution shape effectively.
+
+```{r centered-barplot-example}
+# Example usage of centered_barplot
+centered_barplot(categories, "animal")
+```
+
+### Centered Dot Plots
+
+Centered dot plots display categories as points arranged symmetrically around the center, with the most frequent categories in the middle. Optionally, points can be connected with lines to highlight trends.
+
+```{r centered-dotplot-example}
+# Example usage of centered_dotplot
+centered_dotplot(categories, "animal",connect = TRUE,shade = TRUE)
+```
+
+
