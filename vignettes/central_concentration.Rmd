@@ -1,0 +1,40 @@
+---
+title: "Central Concentration for Nominal Variables"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Central Concentration for Nominal Variables}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(nomiShape)
+```
+
+## Central Concentration for Nominal Variables
+This vignette demonstrates how to compute the central concentration for nominal variables using the `central_concentration` function from the `nomiShape` package. Central concentration quantifies how concentrated the distribution of a nominal variable is around its most frequent categories.
+
+### Computing Central Concentration
+
+```{r central-concentration-example-1}
+# Example usage of central_concentration
+central_concentration(categories, "animal")
+```
+
+```{r central-concentration-example-2}
+# Example usage of central_concentration
+central_concentration(categories2, "animal")
+```
+
+```{r central-concentration-example-3}
+# Example usage of central_concentration
+central_concentration(categories3, "animal")
+```
+

@@ -5,7 +5,7 @@
 \alias{categories2}
 \title{Categories2: Triangular Distribution of Bikinibottom Species}
 \format{
-A data frame with 11 rows and 2 variables:
+A data frame with 250 rows and 11 variables:
 \describe{
 \item{animal}{Character. Species/animal names.}
 \item{freq}{Integer. Frequency of each species, forming a triangular pattern.}
@@ -20,7 +20,6 @@ from the Bikini Bottom universe (SpongeBob SquarePants).
 This dataset simulates a roughly triangular distribution of frequencies.
 }
 \examples{
-categories2
-barplot(categories2$freq, names.arg = categories2$animal)
+ranked_barplot(categories2, "animal")
 }
 \keyword{datasets}

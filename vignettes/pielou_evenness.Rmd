@@ -1,0 +1,39 @@
+---
+title: "Pielou's Evenness for Nominal Variables"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Pielou's Evenness for Nominal Variables}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(nomiShape)
+```
+
+## Pielou's Evenness for Nominal Variables
+This vignette demonstrates how to compute Pielou's evenness index for nominal variables using the `pielou_evenness` function from the `nomiShape` package. Pielou's evenness quantifies how evenly individuals are distributed across categories in a nominal variable.
+
+### Computing Pielou's Evenness
+
+```{r pielou-evenness-example-1}
+# Example usage of pielou_evenness
+pielou_evenness(categories, "animal")
+```
+
+```{r pielou-evenness-example-2}
+# Example usage of pielou_evenness
+pielou_evenness(categories2, "animal")
+```
+
+```{r pielou-evenness-example-3}
+# Example usage of pielou_evenness
+pielou_evenness(categories3, "animal")
+```

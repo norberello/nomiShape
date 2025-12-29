@@ -1,0 +1,68 @@
+---
+title: "Shape AIC for Nominal Variables"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Shape AIC for Nominal Variables}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup, include=FALSE}
+library(nomiShape)
+```
+
+## Shape AIC for Nominal Variables
+
+This vignette demonstrates how to compute the Shape AIC for nominal variables using the `shape_aic` function from the `nomiShape` package. Shape AIC quantifies the goodness-of-fit of different shape models to the distribution of a nominal variable.
+
+### Computing Shape AIC
+
+```{r shape-aic-example-1}
+# Example usage of shape_aic
+shape_aic(categories, "animal")
+```
+
+```{r shape-aic-example-2}
+# Example usage of shape_aic
+shape_aic(categories2, "animal")
+```
+
+
+```{r shape-aic-example-3}
+# Example usage of shape_aic
+shape_aic(categories3, "animal")
+```
+
+```{r shape-aic-example-4}
+# Example usage of shape_aic
+shape_aic(starwars, "species")
+```
+
+```{r}
+# approximate rate from top counts
+obs <- sort(table(starwars$species), decreasing = TRUE)
+ranks <- seq_along(obs)
+rate_est <- -coef(lm(log(obs + 1e-6) ~ ranks))[2]  # linear fit in log-space
+rate_est
+```
+
+```{r}
+shape_aic(starwars, "species")
+```
+
+```{r}
+shape_aic (starwars,"species") 
+```
+```{r}
+shape_aic (mpg,"manufacturer") 
+```
+
+
+

@@ -1,0 +1,39 @@
+---
+title: "Tail Index for Nominal Variables"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Tail Index for Nominal Variables}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(nomiShape)
+```
+
+## Tail Index for Nominal Variables
+This vignette demonstrates how to compute the tail index for nominal variables using the `tail_index` function from the `nomiShape` package. The tail index quantifies the proportion of categories contributing to the lower part of the distribution, useful for identifying long-tail structures in nominal data.
+
+### Computing Tail Index
+
+```{r tail-index-example-1}
+# Example usage of tail_index
+tail_index(categories, "animal")
+```
+
+```{r tail-index-example-2}
+# Example usage of tail_index
+tail_index(categories2, "animal", threshold = 0.9)
+```
+
+```{r tail-index-example-3}
+# Example usage of tail_index
+tail_index(categories3, "animal", threshold = 0.75)
+```

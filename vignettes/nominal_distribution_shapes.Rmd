@@ -14,34 +14,50 @@ knitr::opts_chunk$set(
 )
 ```
 
-## Visualizing Nominal Distributions with nomiShape
+```{r}
+library(nomiShape)
+```
 
-Data can be measured on different scales, which fundamentally affects how we analyze and visualize it (Table 1). There are four commonly recognized measurement scales: nominal, ordinal, interval, and ratio. Variables measured on a continuous scale can take any value within a range and typically follow continuous distributions. Variables with a finite set of possible values follow discrete distributions. Among discrete and qualitative variables, nominal variables are unique in that they categorize data into labels or groups without any inherent order or hierarchy. Nominal categories simply indicate membership: an observation either belongs to a category or it does not. No comparative or numerical information is implied. Common examples of nominal variables include: Blood group, Gender, Religion or Color
 
-Table 1. Summary of Nominal Data Characteristics and Visualization Tools of the library `nomiShape`
+## Visualizing Nominal Distributions with `nomiShape`
+
+Data can be measured on different scales, which fundamentally affects how they can be analyzed and visualized (Table 1). Four commonly recognized measurement scales are nominal, ordinal, interval, and ratio. Variables measured on continuous scales can take any value within a range and are often modeled using continuous probability distributions, whereas variables with a finite set of possible values follow discrete distributions.
+
+Among discrete and qualitative variables, **nominal variables** are unique in that they classify observations into categories without any inherent order, ranking, or numerical meaning. Nominal categories indicate membership only: an observation either belongs to a category or it does not. No information about magnitude, distance, or direction is implied. Common examples of nominal variables include species identities in an ecological community, political attitudes or party affiliation in social surveys, behavioral categories in ethological or psychological studies (e.g. play, aggression, vigilance), word types in a linguistic corpus, or thematic codes in qualitative research.
+
+Although nominal variables lack intrinsic numeric structure, the **frequency with which categories occur** provides rich information about the organization of the system under study. Count data derived from nominal variables can reveal patterns of dominance, rarity, symmetry, and tail structure—features that are rarely formalized but are often visually apparent. The `nomiShape` package is designed to make these distributional properties explicit by combining centered visualizations with quantitative indices and model-based comparisons tailored specifically to nominal data.
+
+**Table 1.** Summary of Nominal Data Characteristics and Visualization and Analysis Tools in the `nomiShape` package
 
 | Concept | Description |
-|---------|-------------|
-| Variable Type | Nominal (categorical, unordered) |
-| Characteristics | Discrete values, no intrinsic order, qualitative labels only |
-| Examples | Gender, Blood group, Religion, Color |
-| Common Visualizations | Bar plots (unordered or frequency-sorted) |
-| Distribution Concepts | Symmetry, dominance, tails — rarely considered in nominal data |
-| Challenges | Cannot compute means, medians, or numeric statistics directly |
-| Tools in `nomiShape` | Centered Bar Plot, Centered Dot Plot, Ranked Bar Plot, Ranked Dot Plot, Pareto Chart |
+|--------|-------------|
+| **Variable Type** | Nominal (categorical, unordered) |
+| **Core Properties** | Discrete categories with no intrinsic order or numeric meaning |
+| **Typical Examples** | Species in a biological community; political attitudes (e.g. conservative, liberal, undecided); behavioral categories (e.g. play, aggression, grooming); word types in a text corpus; qualitative themes or codes |
+| **What Can Be Counted** | Frequencies, proportions, dominance, rarity |
+| **What Cannot Be Computed** | Means, medians, variances, distances, or ranks derived from numeric magnitude |
+| **Common Visualizations** | Standard bar plots (unordered or frequency-ranked) |
+| **Often-Ignored Distributional Structure** | Dominance, symmetry, central concentration, tail heaviness |
+| **Main Analytical Challenge** | Distributional “shape” exists but is difficult to formalize for nominal data |
+| **Visual Tools in `nomiShape`** | Centered Bar Plot, Centered Dot Plot, Ranked Bar Plot, Ranked Dot Plot, Pareto Chart |
+| **Analytical Tools in `nomiShape`** | Pielou’s evenness, Dominance index, Central concentration, Tail index |
+| **Model-Based Shape Comparison** | AIC-based comparison of uniform, triangular, normal-like, and exponential (Pareto-like) shapes |
+| **Design Philosophy** | Reveal latent distributional structure visually (via centering and ranking), then formalize it analytically |
 
-This table provides a quick reference for **what nominal data is**, its properties, and the **visualization tools** offered by `nomiShape`.
 
 Handling nominal (categorical) data is an essential part of data analysis. Almost every data science project involves working with such variables, and students and practitioners alike should know how to store, summarize, visualize, and manipulate them. Traditional visualizations of nominal variables often use unordered bar plots or frequency-sorted bar plots (from high to low), which emphasize category counts but rarely provide insight into distributional structure. As a result, concepts like symmetry, skewness, dominance, or tail behaviour—commonly discussed for numerical variables—are seldom considered for nominal data. However, exceptions include Pareto charts and other ranked visualizations, which can highlight the "vital few" categories following the 80:20 rule or reveal long-tailed distributions, such as rank-abundance plots in ecology where typically most species are relatively rare and a few are common. These visualizations allow insights into categorical dominance and rarity patterns even for nominal variables.
 
 The `nomiShape` package is designed to further explore the shape of nominal distributions. It offers multiple plotting functions, including classic visualizations such as Pareto charts and ranked bar plots, as well as novel centered bar and dot plots. These functions help users understand frequency structures, dominance patterns, and distributional characteristics of nominal variables, facilitating more nuanced analysis of categorical data.
 
-```{r setup}
+```{r setup, include=FALSE}
 library(nomiShape)
+library(dplyr)
 ```
 
 ## Visualizing and Analyzing Distributions of Nominal Variables
 This vignette demonstrates how to visualize and analyze the distributions of nominal variables using various plotting functions provided by the `nomiShape` package. We will explore centered bar plots, ranked bar plots, centered dot plots, and ranked dot plots.
+
+## Plotting Shapes of Nominal Distributions
 
 ### Ranked Bar Plots
 
@@ -52,12 +68,12 @@ Ranked bar plots order categories from the most frequent to the least frequent, 
 ranked_barplot(categories, "animal")
 ```
 
-```{r ranked-barplot-example}
+```{r ranked-barplot-example-2}
 # Example usage of ranked_barplot
 ranked_barplot(categories2, "animal")
 ```
 
-```{r ranked-barplot-example}
+```{r ranked-barplot-exampl-3}
 # Example usage of ranked_barplot
 ranked_barplot(categories3, "animal")
 ```
@@ -66,17 +82,17 @@ ranked_barplot(categories3, "animal")
 
 Ranked dot plots display categories as points ordered from the most frequent to the least frequent, allowing for easy comparison of category frequencies.
 
-```{r ranked-dotplot-example}
+```{r ranked-dotplot-example-1}
 # Example usage of ranked_dotplot
 ranked_dotplot(categories, "animal", connect = TRUE)
 ```
 
-```{r ranked-dotplot-example}
+```{r ranked-dotplot-example-2}
 # Example usage of ranked_dotplot
 ranked_dotplot(categories2, "animal", connect = TRUE, shade = TRUE)
 ```
 
-```{r ranked-dotplot-example}
+```{r ranked-dotplot-example-3}
 # Example usage of ranked_dotplot
 ranked_dotplot(categories3, "animal", connect = FALSE, shade = TRUE)
 ```
@@ -85,7 +101,7 @@ ranked_dotplot(categories3, "animal", connect = FALSE, shade = TRUE)
 
 Pareto charts combine bar plots and line graphs to highlight the most significant categories in a nominal variable. They help identify the "vital few" categories that contribute most to the overall distribution.
 
-```{r pareto-chart-example}
+```{r pareto-chart-example 1}
 # Example usage of pareto
 pareto(categories3, "animal")
 ```
@@ -94,17 +110,17 @@ pareto(categories3, "animal")
 
 Centered bar plots arrange categories symmetrically around the center, with the most frequent categories in the middle and less frequent ones towards the edges. This layout helps to visualize the distribution shape effectively.
 
-```{r centered-barplot-example}
+```{r centered-barplot-example 1}
 # Example usage of centered_barplot
 centered_barplot(categories, "animal")
 ```
 
-```{r centered-barplot-example}
+```{r centered-barplot-example 2}
 # Example usage of centered_barplot
 centered_barplot(categories2, "animal",scale = "percent")
 ```
 
-```{r centered-barplot-example}
+```{r centered-barplot-example 3}
 # Example usage of centered_barplot
 centered_barplot(categories3, "animal")
 ```
@@ -113,21 +129,143 @@ centered_barplot(categories3, "animal")
 
 Centered dot plots display categories as points arranged symmetrically around the center, with the most frequent categories in the middle. Optionally, points can be connected with lines to highlight trends.
 
-```{r centered-dotplot-example}
+```{r centered-dotplot-example 1}
 # Example usage of centered_dotplot
 centered_dotplot(categories, "animal",connect = TRUE,shade = TRUE)
 ```
 
 
-```{r centered-dotplot-example}
+```{r centered-dotplot-example 2}
 # Example usage of centered_dotplot
 centered_dotplot(categories2, "animal",connect = TRUE,shade = TRUE)
 ```
 
-```{r centered-dotplot-example}
+```{r centered-dotplot-example 3}
 # Example usage of centered_dotplot
 centered_dotplot(categories3, "animal",connect = TRUE,shade = TRUE)
 ```
 
+## Measuring Shapes of Nominal Distributions
+
+### Evenness
+
+Pielou's evenness quantifies how evenly individuals are distributed across categories in a nominal variable.
+
+```{r pielou-evenness-example-1}
+# Example usage of pielou_evenness
+pielou_evenness(categories, "animal")
+```
+
+```{r pielou-evenness-example-2}
+# Example usage of pielou_evenness
+pielou_evenness(categories2, "animal")
+```
+
+```{r pielou-evenness-example-3}
+# Example usage of pielou_evenness
+pielou_evenness(categories3, "animal")
+```
+
+### Dominance Index
+
+The dominance index quantifies the degree to which a few categories dominate the distribution of a nominal variable.
+
+```{r dominance-index-example-1}
+# Example usage of dominance_index
+dominance_index(categories, "animal")
+```
+
+```{r dominance-index-example-2}
+# Example usage of dominance_index
+dominance_index(categories2, "animal")
+```
+
+```{r dominance-index-example-3}
+# Example usage of dominance_index
+dominance_index(categories3, "animal")
+```
+
+### Central Concentration
+
+The central concentration quantifies how concentrated the distribution of a nominal variable is around its most frequent categories.
+
+```{r central-concentration-example-1}
+# Example usage of central_concentration
+central_concentration(categories, "animal")
+```
+
+```{r central-concentration-example-2}
+# Example usage of central_concentration
+central_concentration(categories2, "animal")
+```
+
+```{r central-concentration-example-3}
+# Example usage of central_concentration
+central_concentration(categories3, "animal")
+```
+
+### Tail Index
+
+The tail index quantifies the proportion of categories contributing to the lower part of the distribution, useful for identifying long-tail structures in nominal data. By default, it uses a threshold of 0.8, following the Pareto principle, but this can be adjusted as needed.
+
+```{r tail-index-example-1}
+# Example usage of tail_index
+tail_index(categories, "animal")
+```
+
+```{r tail-index-example-2}
+# Example usage of tail_index
+tail_index(categories2, "animal", threshold = 0.9)
+```
+
+```{r tail-index-example-3}
+# Example usage of tail_index
+tail_index(categories3, "animal", threshold = 0.75)
+```
+
+## Detecting theoretical distributions in nominal variables
+
+### Visualizing Theoretical Shapes
+
+The `shape_comp_plot` function allows users to visualize common theoretical distribution shapes (uniform, triangular, normal-like, and exponential/Pareto-like) for nominal variables in comparison with the observed distribution. This helps in understanding how different distributions appear when plotted.
+
+```{r shape-comp-plot-example-1}
+# Example usage of shape_comp_plot
+shape_comp_plot(categories, "animal")
+```
+
+```{r shape-comp-plot-example-2}
+# Example usage of shape_comp_plot
+shape_comp_plot(categories2, "animal")
+```
+
+```{r shape-comp-plot-example-3}
+# Example usage of shape_comp_plot
+shape_comp_plot(categories3, "animal")
+```
+
+```{r shape-comp-plot-example-4}
+# Example usage of shape_comp_plot
+shape_comp_plot(starwars, "species")
+```
+
+### AIC comparison of theoretical shapes
+
+The `shape_aic` function computes the Akaike Information Criterion (AIC) for different theoretical shape models fitted to the distribution of a nominal variable. This allows users to quantitatively compare how well each model fits the observed data.
+
+```{r shape-aic-example-1}
+# Example usage of shape_aic
+shape_aic(categories, "animal")
+```
+
+```{r shape-aic-example-2}
+# Example usage of shape_aic
+shape_aic(categories2, "animal")
+```
+
+```{r shape-aic-example-3}
+# Example usage of shape_aic
+shape_aic(categories3, "animal")
+```
 
 

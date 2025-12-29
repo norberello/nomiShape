@@ -1,0 +1,39 @@
+---
+title: "Dominance Index for Nominal Variables"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Dominance Index for Nominal Variables}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(nomiShape)
+```
+
+## Dominance Index for Nominal Variables
+This vignette demonstrates how to compute the dominance index for nominal variables using the `dominance_index` function from the `nomiShape` package. The dominance index quantifies the degree to which a few categories dominate the distribution of a nominal variable.
+
+### Computing Dominance Index
+
+```{r dominance-index-example-1}
+# Example usage of dominance_index
+dominance_index(categories, "animal")
+```
+
+```{r dominance-index-example-2}
+# Example usage of dominance_index
+dominance_index(categories2, "animal")
+```
+
+```{r dominance-index-example-3}
+# Example usage of dominance_index
+dominance_index(categories3, "animal")
+```

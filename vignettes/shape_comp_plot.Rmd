@@ -1,0 +1,46 @@
+---
+title: "Shape Comparison Plots for Nominal Variables"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Shape Comparison Plots for Nominal Variables}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup, include=FALSE}
+library(nomiShape)
+library(dplyr)      # <- REQUIRED
+library(ggplot2)
+```
+
+## Shape Comparison Plots for Nominal Variables
+This vignette demonstrates how to create shape comparison plots for nominal variables using the `shape_comp_plot` function from the `nomiShape` package. Shape comparison plots visually compare the distribution shapes of the observed distribution (in black dotted line) of a nominal variable with a set of 4 theoretical ones: uniform, triangular, normal and exponential. 
+
+### Creating Shape Comparison Plots
+
+```{r shape-comp-plot-example-1}
+# Example usage of shape_comp_plot
+shape_comp_plot(categories, "animal")
+```
+
+```{r shape-comp-plot-example-2}
+# Example usage of shape_comp_plot
+shape_comp_plot(categories2, "animal")
+```
+
+```{r shape-comp-plot-example-3}
+# Example usage of shape_comp_plot
+shape_comp_plot(categories3, "animal")
+```
+
+```{r shape-comp-plot-example-4}
+# Example usage of shape_comp_plot
+shape_comp_plot(starwars, "species")
+```
