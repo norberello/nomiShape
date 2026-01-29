@@ -21,5 +21,5 @@ A data.frame with columns: Shape, AIC, DeltaAIC.
 \description{
 Computes the multinomial log-likelihood of observed counts against
 four theoretical distributions (uniform, triangular, normal-like,
-and exponential/Pareto-like) and returns AIC and ΔAIC values.
+and exponential/Pareto-like) and returns AIC and DeltaAIC values.
 }
